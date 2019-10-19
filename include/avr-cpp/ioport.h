@@ -74,6 +74,12 @@ namespace avrcpp {
             Port().setPin(1 << Pin);
         }
 
+        void set(bool enable) {
+            Port().setPin(
+                        (Port().readPin(0xFF) & ~(1 << Pin)) |
+                        (enable & (1 << Pin)));
+        }
+
         void clear() {
             Port().clearPin(1 << Pin);
         }
