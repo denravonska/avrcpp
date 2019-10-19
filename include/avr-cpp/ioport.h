@@ -31,23 +31,23 @@ namespace avrcpp {
             const uint8_t DdrAddr,
             const uint8_t PinAddr>
     struct IOPort {
-        static void setDdr(uint8_t mask) {
+        void setDdr(uint8_t mask) {
             set_bits(DdrAddr, mask);
         }
 
-        static void clearDdr(uint8_t mask) {
+        void clearDdr(uint8_t mask) {
             clear_bits(DdrAddr, mask);
         }
 
-        static void setPin(uint8_t mask) {
+        void setPin(uint8_t mask) {
             set_bits(PinAddr, mask);
         }
 
-        static void clearPin(uint8_t mask) {
+        void clearPin(uint8_t mask) {
             clear_bits(PinAddr, mask);
         }
 
-        static int readPin(uint8_t mask) {
+        int readPin(uint8_t mask) {
             return get_bits(PinAddr, mask);
         }
     };
@@ -57,29 +57,29 @@ namespace avrcpp {
         void setDirection(const PinDirection direction) {
             switch(direction) {
                 case INPUT:
-                    Port::clearDdr(1 << Pin);
-                    Port::clearPin(1 << Pin);
+                    Port().clearDdr(1 << Pin);
+                    Port().clearPin(1 << Pin);
                     break;
                 case INPUT_PULL_UP:
-                    Port::clearDdr(1 << Pin);
-                    Port::setPin(1 << Pin);
+                    Port().clearDdr(1 << Pin);
+                    Port().setPin(1 << Pin);
                     break;
                 case OUTPUT:
-                    Port::setDdr(1 << Pin);
+                    Port().setDdr(1 << Pin);
                     break;
             }
         }
 
         void set() {
-            Port::setPin(1 << Pin);
+            Port().setPin(1 << Pin);
         }
 
         void clear() {
-            Port::clearPin(1 << Pin);
+            Port().clearPin(1 << Pin);
         }
 
         bool read() {
-            return Port::readPin(1 << Pin);
+            return Port().readPin(1 << Pin);
         }
     };
 
