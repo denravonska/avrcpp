@@ -83,8 +83,20 @@ namespace avrcpp {
         }
     };
 
-    using PortB = IOPort<0x05 + 0x20, 0x05 + 0x20, 0x05 + 0x20>;
-    //typedef IOPort<0x05 + 0x20> PortB;
-    typedef IOPort<0x0E + 0x20, 0x05 + 0x20, 0x05 + 0x20> PortE;
+    const uint8_t BASE_OFFSET = 0x20;
+    const uint8_t PIN_OFFSET  = 0x00;
+    const uint8_t DDR_OFFSET  = 0x01;
+    const uint8_t PORT_OFFSET = 0x02;
+    const uint8_t IOA         = 0x00 + BASE_OFFSET;
+    const uint8_t IOB         = 0x03 + BASE_OFFSET;
+    const uint8_t IOC         = 0x06 + BASE_OFFSET;
+    const uint8_t IOD         = 0x09 + BASE_OFFSET;
+    const uint8_t IOE         = 0x0C + BASE_OFFSET;
+
+    using PortA = IOPort<IOA + PORT_OFFSET, IOA + DDR_OFFSET, IOA + PIN_OFFSET>;
+    using PortB = IOPort<IOB + PORT_OFFSET, IOB + DDR_OFFSET, IOB + PIN_OFFSET>;
+    using PortC = IOPort<IOC + PORT_OFFSET, IOC + DDR_OFFSET, IOC + PIN_OFFSET>;
+    using PortD = IOPort<IOD + PORT_OFFSET, IOD + DDR_OFFSET, IOD + PIN_OFFSET>;
+    using PortE = IOPort<IOE + PORT_OFFSET, IOE + DDR_OFFSET, IOE + PIN_OFFSET>;
 }
 
