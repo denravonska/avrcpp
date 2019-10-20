@@ -2,7 +2,15 @@ Proof of concept for C++ development on 8bit AVR with minimal overhead.
 
 # Design goals
 - The library should be easier to use than raw register manipulation.
-- The library should not introduce overhead.
+- The implementation should try to minimize overhead.
+
+## Pros
+- More readable.
+- Allows for flexible refactoring.
+- Reduced risk of typos.
+
+## Cons
+- Still not as efficient as manual register handling.
 
 # Example
 ## Pins on the same port
